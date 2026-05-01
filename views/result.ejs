@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cocktail Results</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+<% if (!drinks) { %>
+    <h2>No cocktails found 😢</h2>
+<% } else { %>
+
+    <% drinks.forEach(drink => { %>
+
+        <div class="card">
+
+            <h2><%= drink.strDrink %></h2>
+
+            <img src="<%= drink.strDrinkThumb %>">
+
+            <div>
+                <span class="tag"><%= drink.strCategory %></span>
+                <span class="tag"><%= drink.strAlcoholic %></span>
+            </div>
+
+            <h3>Ingredients</h3>
+            <ul>
+                <% for(let i = 1; i <= 15; i++) { %>
+                    <% if(drink["strIngredient" + i]) { %>
+                        <li>
+                            <%= drink["strIngredient" + i] %> -
+                            <%= drink["strMeasure" + i] %>
+                        </li>
+                    <% } %>
+                <% } %>
+            </ul>
+
+            <p class="instructions"><%= drink.strInstructions %></p>
+
+        </div>
+
+    <% }) %>
+
+<% } %>
+
+<a href="/" class="back">← Back</a>
+
+</div>
+
+</body>
+</html>
